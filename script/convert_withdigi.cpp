@@ -196,7 +196,7 @@ void convert_caloroot_to_h5(const std::string& root_file_path, const std::string
     DataSet dataset_total_energy_AHCAL = h5_file.createDataSet("total_energy_AHCAL", PredType::NATIVE_FLOAT, dataspace);
     // Define the shape for SciW and AHCAL data
     hsize_t dims_SciW[4] = { total_entries, 32, 5, 42 };
-    hsize_t dims_AHCAL[4] = { total_entries, 40, 18, 18 };
+    hsize_t dims_AHCAL[4] = { total_entries, 40, 18, 18 };  //40 layers, 18*18 cells per layer
     DataSpace dataspace_SciW(4, dims_SciW);
     DataSpace dataspace_AHCAL(4, dims_AHCAL);
 

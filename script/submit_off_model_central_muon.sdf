@@ -2,8 +2,8 @@ Avalie = $(Process)
 Jobid = $INT(Avalie)
 Universe     = Vanilla
 Getenv       = True
-Executable   = /afs/cern.ch/user/y/ymaruya/private/AHCAL-simulation/bin/SimCalModule_0mmW_muon_500mmFe_6
-Arguments    = /afs/cern.ch/user/y/ymaruya/private/AHCAL-simulation/mac/run_off_AHCAL0mmW_central_$(Jobid).mac $(Jobid) 
+Executable   = /afs/cern.ch/user/a/asakai/private/AHCAL-simulation/bin/SimCalModule_0mmW_muon_100mmSteel_20
+Arguments    = /afs/cern.ch/user/a/asakai/private/AHCAL-simulation/mac/run_off_AHCAL0mmW_central_$(Jobid).mac $(Jobid) 
 +JobFlavour = "testmatch"
 
 # comment out the followings if you don't need to save STDOUT/STDERR/CondorLog

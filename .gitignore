@@ -8,3 +8,25 @@
 /script/*.png
 /script/*.root
 /mac
+
+# ---- CMake / build artifacts ----
+build/
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/Makefile
+**/*.cmake
+**/*.make
+
+# ---- compiler outputs ----
+**/*.o
+**/*.d
+**/*.a
+**/*.so
+**/*.out
+**/*.bin
+**/*.log
+
+# ---- IDE / OS ----
+.vscode/
+.DS_Store

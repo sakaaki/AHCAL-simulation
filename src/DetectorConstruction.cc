@@ -118,7 +118,7 @@ namespace SimCalModule
         HcalPCB_Cu_MatIndex = Cu;
         UpstreamMatIndex = Al;
         IntermediateMatIndex = Air;
-        DownstreamMatIndex = Fe;
+        DownstreamMatIndex = Steel;//DownstreamMatIndex = Fe;
         EcalCellNumberX = 5;
         EcalCellNumberY = 42;
         EcalLayerNumber = 32;
@@ -129,8 +129,10 @@ namespace SimCalModule
         HcalModuleType = 1; // 0:Off; 1:AHCAL; 2:GSHCAL
         EcalStepTimeLimit = 150.0 * ns;
         HcalStepTimeLimit = 150.0 * ns;
-        DownstreamSizeZ = 500 * mm;
-        DownstreamNum = 6;
+        DownstreamSizeZ = 100 * mm;
+        //DownstreamSizeZ = 500 * mm;
+        DownstreamNum = 20;
+        //DownstreamNum = 6;
         // DownstreamSizeZ = 0 * mm; //detail.gdml
     }
 

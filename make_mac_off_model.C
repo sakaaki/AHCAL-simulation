@@ -16,10 +16,10 @@ int make_mac_off_model(){
             ofs<<"/run/verbose 1"<<std::endl;
             ofs<<"/event/verbose 0"<<std::endl;
             ofs<<"/tracking/verbose 0"<<std::endl;
-            ofs<<"/generator/inputFileName /afs/cern.ch/user/y/ymaruya/private/FASERlink/genie_data/faser_off_AHCAL0mmW_charm."<<model_charm[j]<<".1000ifb."<<i<<".gfaser.root"<<std::endl;
+            ofs<<"/generator/inputFileName /eos/user/a/asakai/genie_data/faser_off_AHCAL0mmW_charm."<<model_charm[j]<<".1000ifb."<<i<<".gfaser.root"<<std::endl;
             ofs<<"/generator/FixedPrimaryVertexPosition false"<<std::endl;
             ofs<<"/run/initialize"<<std::endl;
-            TFile * file = new TFile(Form("/afs/cern.ch/user/y/ymaruya/private/FASERlink/genie_data/faser_off_AHCAL0mmW_charm.%s.1000ifb.%d.gfaser.root",model_charm[j].c_str(),i),"READ");
+            TFile * file = new TFile(Form("/eos/user/a/asakai/genie_data/faser_off_AHCAL0mmW_charm.%s.1000ifb.%d.gfaser.root",model_charm[j].c_str(),i),"READ");
             TTree * tree = (TTree*)file->Get("gFaser");
             int N = tree->GetEntriesFast();
             ofs<<"/run/beamOn "<<N<<std::endl;
@@ -32,10 +32,10 @@ int make_mac_off_model(){
             ofs<<"/run/verbose 1"<<std::endl;
             ofs<<"/event/verbose 0"<<std::endl;
             ofs<<"/tracking/verbose 0"<<std::endl;
-            ofs<<"/generator/inputFileName /afs/cern.ch/user/y/ymaruya/private/FASERlink/genie_data/faser_off_AHCAL0mmW_light."<<model_light[j]<<".1000ifb."<<i<<".gfaser.root"<<std::endl;
+            ofs<<"/generator/inputFileName /eos/user/a/asakai/genie_data/faser_off_AHCAL0mmW_light."<<model_light[j]<<".1000ifb."<<i<<".gfaser.root"<<std::endl;
             ofs<<"/generator/FixedPrimaryVertexPosition false"<<std::endl;
             ofs<<"/run/initialize"<<std::endl;
-            TFile * file = new TFile(Form("/afs/cern.ch/user/y/ymaruya/private/FASERlink/genie_data/faser_off_AHCAL0mmW_light.%s.1000ifb.%d.gfaser.root",model_light[j].c_str(),i),"READ");
+            TFile * file = new TFile(Form("/eos/user/a/asakai/genie_data/faser_off_AHCAL0mmW_light.%s.1000ifb.%d.gfaser.root",model_light[j].c_str(),i),"READ");
             TTree * tree = (TTree*)file->Get("gFaser");
             int N = tree->GetEntriesFast();
             ofs<<"/run/beamOn "<<N<<std::endl;
