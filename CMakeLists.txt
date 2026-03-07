@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------
 # Setup the project
 cmake_minimum_required(VERSION 3.16...3.24)
-project(SimCalModule_0mmW_muon_100mmSteel_20)
+project(SimCalModule_GS_HCAL)
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -56,8 +56,8 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
-add_executable(SimCalModule_0mmW_muon_100mmSteel_20 SimCalModule.cc ${sources} ${headers})
-target_link_libraries(SimCalModule_0mmW_muon_100mmSteel_20 ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} ${PYTHIA8_LIBRARY})
+add_executable(SimCalModule_GS_HCAL SimCalModule.cc ${sources} ${headers})
+target_link_libraries(SimCalModule_GS_HCAL ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} ${PYTHIA8_LIBRARY})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory. This is so that we can
@@ -88,4 +88,4 @@ add_custom_target(CalorimeterModule DEPENDS SimCalModule_300mmFe)
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
 #
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/)
-install(TARGETS SimCalModule_0mmW_muon_100mmSteel_20 DESTINATION bin)
+install(TARGETS SimCalModule_GS_HCAL DESTINATION bin)

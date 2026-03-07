@@ -40,7 +40,8 @@ namespace SimCalModule
         PlasticSciECAL,
         SciGlass,
         Graphite,
-        Concrete
+        Concrete,
+        Teflon   // PTFE (polytetrafluoroethylene)
     };
 
     struct CaloUnitParameter
@@ -95,6 +96,9 @@ namespace SimCalModule
         G4double GetEcalStepTimeLimit() const { return EcalStepTimeLimit; }
         G4double GetHcalStepTimeLimit() const { return HcalStepTimeLimit; }
         G4Material *GetCaloMaterial(MaterialIndex fIndex) const { return MaterialStore[fIndex]; }
+
+
+        
 
     private:
         void DefineMaterials();

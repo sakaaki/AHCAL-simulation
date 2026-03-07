@@ -74,36 +74,35 @@ namespace SimCalModule
         EcalUnitParameter.Sensitive_dig_out_Y = 0.0 * mm;
         EcalUnitParameter.Sensitive_dig_out_Z = 0.0 * mm;
         HcalUnitParameter.ifDoubleSidedReadout = false;
-        HcalUnitParameter.SensitiveLength = 3.0 * mm;
+        HcalUnitParameter.SensitiveLength = 10.0 * mm; //3.00 * mm for AHCAL, 1 GS tile
         HcalUnitParameter.SensitiveX = 40.0 * mm;
         HcalUnitParameter.SensitiveY = HcalUnitParameter.SensitiveX;
-        HcalUnitParameter.PassiveSideThick = 0.065 * mm;
-        HcalUnitParameter.PassiveCoverThick = 0.065 * mm;
-        HcalUnitParameter.House_X = 40.3 * mm;
+        HcalUnitParameter.PassiveSideThick = 0.1 * mm;  //reflector
+        HcalUnitParameter.PassiveCoverThick = 0.1 * mm; //reflector
+        HcalUnitParameter.House_X = 40.2 * mm;  //GS+reflector
         HcalUnitParameter.House_Y = HcalUnitParameter.House_X;
-        HcalUnitParameter.House_Z = 3.5 * mm;
-        HcalUnitParameter.AttachThick = 0 * mm;
-        HcalUnitParameter.Sensitive_dig_out_X = 5.5 * mm;
+        HcalUnitParameter.House_Z = HcalUnitParameter.SensitiveLength + 2 * HcalUnitParameter.PassiveCoverThick + HcalUnitParameter.AttachThick;
+        HcalUnitParameter.AttachThick = 0.0 * mm;
+        HcalUnitParameter.Sensitive_dig_out_X = 0.0 * mm;  //digout in not GS, but PCB //HcalUnitParameter.Sensitive_dig_out_X = 5.5 * mm;
         HcalUnitParameter.Sensitive_dig_out_Y = HcalUnitParameter.Sensitive_dig_out_X;
-        HcalUnitParameter.Sensitive_dig_out_Z = 1.1 * mm;
-        HcalUnitParameter.SensitiveMatIndex = PlasticSciHCAL;
+        HcalUnitParameter.Sensitive_dig_out_Z = 0.0 * mm;  //HcalUnitParameter.Sensitive_dig_out_Z = 1.1 * mm;
+        HcalUnitParameter.SensitiveMatIndex = SciGlass; //PlasticSciHCAL; for AHCAL
         HcalUnitParameter.Sensitive_dig_out_MatIndex = Air;
-        HcalUnitParameter.PassiveMatIndex = ESR;
+        HcalUnitParameter.PassiveMatIndex = Teflon; //ESR; for AHCAL
         HcalUnitParameter.AttachMatIndex = Quartz;
         Initial_pos = G4ThreeVector(850.0*mm,330.0*mm,5570*mm);
         // Initial_pos = G4ThreeVector(0*mm,0*mm,3500*mm); // detailed.gdml
         EcalAbsorberThick = 3.2 * mm; // 3.2 mm for ScW ECAL
-        HcalAbsorberThick = 20.0 * mm;
+        HcalAbsorberThick = 13.8 * mm; // 20.0 mm for AHCAL
         EcalPCBThick = 2.0 * mm;
-        HcaltriggerThick = 20.0 * mm;
-        // HcaltriggerThick = 100.0 * mm;
+        HcaltriggerThick = 0.0 * mm;        //HcaltriggerThick = 20.0 * mm;        // HcaltriggerThick = 100.0 * mm;
         HcaltriggerIndex = PlasticSciHCAL;
-        HcalgraphiteThick = 0 * mm;
+        HcalgraphiteThick = 0.0 * mm;
         HCALgraphiteIndex = W;
         Hcaltriggernplane = 1;
-        HcalPCBThick = 2.5 * mm;  //2.5mm *4/5 for PCB, 1mm for component
+        HcalPCBThick = 3.2 * mm;  //1.2mm for PCB+ 2.0mm for ASIC  //2.5mm *4/5 for PCB, 1mm for component for AHCAL
         HcalPCB_Cu_Thick = 0.0 * mm; //2.5mm *1/5
-        HcalPCB_Abs_gap = 6.5 * mm - HcalPCBThick - HcalPCB_Cu_Thick;//4mm-1mm
+        HcalPCB_Abs_gap = 0.0 * mm; //HcalPCB_Abs_gap = 6.5 * mm - HcalPCBThick - HcalPCB_Cu_Thick;//4mm-1mm
         UpstreamSizeX = 0 * mm;
         UpstreamSizeY = 0 * mm;
         UpstreamSizeZ = 0 * mm;
@@ -122,16 +121,16 @@ namespace SimCalModule
         EcalCellNumberX = 5;
         EcalCellNumberY = 42;
         EcalLayerNumber = 32;
-        HcalCellNumberX = 18;
-        HcalCellNumberY = 18;
-        HcalLayerNumber = 40;
+        HcalCellNumberX = 13; //18 for AHCAL
+        HcalCellNumberY = 13;
+        HcalLayerNumber = 48; //40 for AHCAL
         EcalModuleType = 0; // 0:Off; 1:Cube; 2:Crossed bar; 3:ScW ECAL
-        HcalModuleType = 1; // 0:Off; 1:AHCAL; 2:GSHCAL
+        HcalModuleType = 2; // 0:Off; 1:AHCAL; 2:GSHCAL
         EcalStepTimeLimit = 150.0 * ns;
         HcalStepTimeLimit = 150.0 * ns;
         DownstreamSizeZ = 100 * mm;
         //DownstreamSizeZ = 500 * mm;
-        DownstreamNum = 20;
+        DownstreamNum = 0;
         //DownstreamNum = 6;
         // DownstreamSizeZ = 0 * mm; //detail.gdml
     }
@@ -264,7 +263,7 @@ namespace SimCalModule
         MaterialStore.push_back(SciGlassMat); // 17
 
         G4Material *GraphiteMat = nistManager->FindOrBuildMaterial("G4_GRAPHITE");
-        MaterialStore.push_back(GraphiteMat);
+        MaterialStore.push_back(GraphiteMat); //18
 
         // Define Concrete material
         G4Material* ConcreteMat = new G4Material("Concrete", density = 2.4 * g/cm3, 9);
@@ -277,7 +276,10 @@ namespace SimCalModule
         ConcreteMat->AddElement(EleC, 0.03);
         ConcreteMat->AddElement(EleK, 0.01);
         ConcreteMat->AddElement(EleH, 0.006);
-        MaterialStore.push_back(ConcreteMat);
+        MaterialStore.push_back(ConcreteMat); //19
+    
+        G4Material *TeflonMat = nistManager->FindOrBuildMaterial("G4_TEFLON");
+        MaterialStore.push_back(TeflonMat); //20
 
 
         // Print material table
@@ -577,7 +579,8 @@ namespace SimCalModule
         }
 
         // HCAL
-        G4double HcalUnitSizeX = HcalUnitParameter.House_X;//HcalUnitParameter.SensitiveX + 2. * HcalUnitParameter.PassiveSideThick;
+        //HcalUnitParameter.SensitiveX + 2. * HcalUnitParameter.PassiveSideThick;
+        G4double HcalUnitSizeX = HcalUnitParameter.House_X;
         G4double HcalUnitSizeY = HcalUnitParameter.House_X;//HcalUnitParameter.SensitiveY + 2. * HcalUnitParameter.PassiveSideThick;
         G4double HcalUnitSizeZ = HcalUnitParameter.SensitiveLength + 2. * HcalUnitParameter.PassiveCoverThick + ((G4int)(HcalUnitParameter.ifDoubleSidedReadout) + 1) * HcalUnitParameter.AttachThick;
         G4Box *HcalAbsSolid = nullptr;
@@ -605,7 +608,7 @@ namespace SimCalModule
                 HcalPCB_Cu_Logical = new G4LogicalVolume(HcalPCB_Cu_Solid, GetCaloMaterial(HcalPCB_Cu_MatIndex), "HcalPCB_Cu_Logical");
             }
         }
-        if (HcalModuleType == 1)
+        if (HcalModuleType == 1) 
         {
             G4RotationMatrix *HcalUnitInv = new G4RotationMatrix();
             HcalUnitInv->rotateY(180. * deg);
@@ -736,15 +739,15 @@ namespace SimCalModule
         else if (HcalModuleType == 2)
         {
             G4RotationMatrix *HcalUnitInv = new G4RotationMatrix();
-            HcalUnitInv->rotateY(180. * deg);
+            HcalUnitInv->rotateY(180. * deg); //pi rotation around Y axis 
             G4double Zpos = HcalUnitSizeZ / 2.;
             if (EcalModuleType > 0)
                 Zpos += (EcalUnitSizeZ + EcalPCBThick + EcalAbsorberThick) * EcalLayerNumber;
             if (IntermediateSizeX * IntermediateSizeY * IntermediateSizeZ > 0)
                 Zpos += IntermediateSizeZ;
-            auto HcalCellMax = std::to_string(std::max(HcalCellNumberX, HcalCellNumberY));
-            G4int HcalCellMaxCount = pow(10, HcalCellMax.length());
-            G4int HcalCopyNum = 0;
+            auto HcalCellMax = std::to_string(std::max(HcalCellNumberX, HcalCellNumberY)); 
+            G4int HcalCellMaxCount = pow(10, HcalCellMax.length());   
+            G4int HcalCopyNum = 0; 
             for (G4int z = 0; z < HcalLayerNumber; z++)
             {
                 for (G4int y = 0; y < HcalCellNumberY; y++)
@@ -782,7 +785,15 @@ namespace SimCalModule
         AbsVisAtt =new G4VisAttributes(G4Colour(0,0.9,0));
         HcalPCBLogical->SetVisAttributes(AbsVisAtt);
         World_Logical->SetVisAttributes(G4VisAttributes::GetInvisible());
+        
+        // === Debug print for GS-HCAL Layer thickness confirmation ===
+        G4double layer_thickness = HcalUnitParameter.SensitiveLength + 2.0 * HcalUnitParameter.PassiveCoverThick + HcalPCBThick + HcalAbsorberThick;
+        
+        if (HcalModuleType == 2) {
+            G4cout << "[GS-HCAL] One layer thickness = " << layer_thickness/mm << " mm" << G4endl;
+        }
 
+        
         return World_Physical;
     }
 
@@ -814,7 +825,8 @@ namespace SimCalModule
             SetSensitiveDetector(HcalSensitiveLogical, fHcalUnitSD.Get());
         }
         // HCAL Trigger
-        if(HcaltriggerThick>0){
+        if(HcaltriggerThick>0)
+        {
             if (!fHcalUnitSD.Get())
             {
                 G4cout << "Construction /CaloDet/HcalSD" << G4endl;

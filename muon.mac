@@ -2,7 +2,7 @@
 /run/verbose 1
 /event/verbose 0
 /tracking/verbose 0
-/generator/inputFileName /afs/cern.ch/user/y/ymaruya/private/AHCAL-simulation/run/muon.gfaser.root
+/generator/inputFileName /afs/cern.ch/user/a/asakai/private/AHCAL-simulation/run/muon.gfaser.root
 /generator/FixedPrimaryVertexPosition false
 /run/initialize
 /run/beamOn 100
